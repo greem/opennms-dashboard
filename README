@@ -4,9 +4,9 @@ opennms Dashboard Readme
 This is based heavily on the excellent nagios dashboard found here:
 http://dingleberry.me/2009/11/nagios-operations-dashboard/
 
-Assuming you have the standard tutorial setup of opennms:
+Assuming you have the standard tutorial setup of opennms on ubuntu:
 
 Installation: 
-1) INstall apache and the php modules for your enviroment.
+1) Install apache2, libapache2-mod-php, php5-curl 
 2) Clone repo to /var/www
 3) Browse to http://yourhost/opennms-dashboard/
