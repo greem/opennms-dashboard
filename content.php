@@ -38,7 +38,7 @@ $dbh = pg_connect("host=localhost dbname=opennms user=opennms");
 		  $url = $rss->channel->item[$i]->link;
 		  $title = str_replace(".fcnt.franklincollege.edu", "", $rss->channel->item[$i]->title);
 		  $time = $rss->channel->item[$i]->pubDate;
-		  echo '<div class="line status6"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p></div>';
+		  echo '<div class="line status6"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p><div class="clear"></div></div>';
     }
 	}
   ?>
@@ -52,7 +52,7 @@ $dbh = pg_connect("host=localhost dbname=opennms user=opennms");
 		  $url = $rss->channel->item[$i]->link;
 		  $title = str_replace(".fcnt.franklincollege.edu", "", $rss->channel->item[$i]->title);
 		  $time = $rss->channel->item[$i]->pubDate;
-		  echo '<div class="line status3"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p></div>';
+		  echo '<div class="line status3"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p><div class="clear"></div></div>';
     }
 	}
   ?>

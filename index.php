@@ -70,6 +70,9 @@
             p {
               float:right;
             }
+            b {
+              float:left;
+            }
             .line {
               -moz-border-radius: 1em;
               border-radius: 1em;
