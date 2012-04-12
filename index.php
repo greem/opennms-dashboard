@@ -67,6 +67,9 @@
               font-weight:normal;
               white-space:normal;
             }
+	    #events b {
+		float:none;
+	    }
             p {
               float:right;
             }
