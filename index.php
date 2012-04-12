@@ -26,6 +26,9 @@
                 display: inline-block;
                 margin-left: 10px;
             }
+	    a {
+		color:black;
+	    }
             h2 {
                 margin: 0 0 .2em 0;
                 color: white;
@@ -55,7 +58,7 @@
               padding:.5em;
               overflow:auto;
               white-space:nowrap;
-              font-size: 1.2em;
+              font-size: 1.3em;
               font-weight:bold;
             }
             #events {
