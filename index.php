@@ -67,7 +67,7 @@
               font-weight:normal;
               white-space:normal;
             }
-	    #events b {
+	    #events p {
 		float:none;
 	    }
             p {
