@@ -55,12 +55,16 @@
               padding:.5em;
               overflow:auto;
               white-space:nowrap;
+              font-size: 1.2em;
+              font-weight:bold;
             }
             #events {
               position:absolute;
               top:2em;
               bottom:2.5em;
               margin-right:1em;           
+              font-size: 1em;
+              font-weight:normal;
               white-space:normal;
             }
             p {
