@@ -60,7 +60,7 @@ $dbh = pg_connect("host=localhost dbname=opennms user=opennms");
   <?
 }
 
-feedMe("http://localhost:8980/opennms/rss.jsp?feed=outage");
+feedMe("http://localhost:8980/opennms/rss.jsp?feed=outage&type=rss_2.0");
 ?>
 </div>
 <div class="right">

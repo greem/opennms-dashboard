@@ -154,7 +154,7 @@
                 // create timestamp
                 var ts = new Date();
                 ts = ts.toTimeString();
-                ts = ts.replace(/\s+GMT.+/ig, "");
+                //ts = ts.replace(/\s+GMT.+/ig, "");
                 ts = ts.replace(/\:\d+(?=$)/ig, "");
                 $("#timestamp_wrap").empty().append("<div class=\"timestamp_drop\"></div><div class=\"timestamp_stamp\">" + ts +"</div>");
             }
