@@ -38,9 +38,55 @@
             
             .date {
                 white-space: nowrap;
-                
             }
-            
+            .left {
+              float:left;
+              width:49%;
+            }
+            .right {
+              float:right;
+              width:49%;
+            }
+            .content {
+              background-color:white;
+              -moz-border-radius: 1em;
+              border-radius: 1em;
+              margin-bottom:.5em;
+              padding:.5em;
+              overflow:auto;
+              white-space:nowrap;
+            }
+            #events {
+              position:absolute;
+              top:2em;
+              bottom:2.5em;
+              margin-right:1em;           
+              white-space:normal;
+            }
+            p {
+              float:right;
+            }
+            .line {
+              -moz-border-radius: 1em;
+              border-radius: 1em;
+              padding:.25em 1em .25em 1em;
+              margin-bottom:.25em;
+            }
+            .status1{
+              background-color:#EBEBCD;
+            }
+            .status3{
+              background-color:#D7E1CD;
+            }
+            .status4{
+              background-color:#FFF5CD;
+            }
+            .status5{
+              background-color:blanchedAlmond;
+            }
+            .status6{
+              background-color:#FFD7CD;
+            }
             .opennms_statusbar {
                 background: -moz-linear-gradient(top center, #6a6a6a, #464646);
                 position: fixed;

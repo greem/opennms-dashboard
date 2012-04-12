@@ -1,90 +1,71 @@
 <? 
-function time_elapsed_string($ptime) {
-    $etime = time() - strtotime($ptime);
-    
-    if ($etime < 1) {
-        return '0 seconds';
-    }
-    
-    $a = array( 12 * 30 * 24 * 60 * 60  =>  'year',
-                30 * 24 * 60 * 60       =>  'month',
-                24 * 60 * 60            =>  'day',
-                60 * 60                 =>  'hour',
-                60                      =>  'minute',
-                1                       =>  'second'
-                );
-    
-    foreach ($a as $secs => $str) {
-        $d = $etime / $secs;
-        if ($d >= 1) {
-            $r = round($d);
-            return $r . ' ' . $str . ($r > 1 ? 's' : '');
-        }
-    }
-}
-
 $dbh = pg_connect("host=localhost dbname=opennms user=opennms");
- if (!$dbh) {
-     die("Error in connection: " . pg_last_error());
- }       
+  if (!$dbh) {
+    die("Error in connection: " . pg_last_error());
+  }       
 ?>
 <html>
 <body>
 
+<div class="left">
+  <h2>Current Outages</h2>
+  <div class="content">
+  <?
+	Function feedMe($feed) {
+	// Use cURL to fetch text
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_URL, $feed);
+	curl_setopt($ch, CURLOPT_HEADER, 0);
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+	curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
+	$rss = curl_exec($ch);
+	curl_close($ch);
 
+  $rss = ltrim($rss, "\n");
+  
+  // Manipulate string into object
+	$rss = simplexml_load_string($rss);
+    
+  //$siteTitle = $rss->channel->title;
+	//echo "<h1>".$siteTitle."</h1>";
+	//echo "<hr />";
 
+	$cnt = count($rss->channel->item);
 
-
-
-
-
-
-<div class="services dash">
-	<h2>Outages</h2>
-	<div class="dash_wrapper">
-<table>
-			<?
- $sql = "SELECT DISTINCT ON
- (node,nodelabel)
-  node.nodelabel, 
-  outages.ipaddr, 
-  outages.iflostservice
-FROM 
-  public.node, 
-  public.outages 
-WHERE 
-  outages.nodeid = node.nodeid
-  AND outages.ifregainedservice is NULL;";
- $result = pg_query($dbh, $sql);
- if (!$result) {
-     die("Error in SQL query: " . pg_last_error());
- }       
-
-				while ($row = pg_fetch_array($result)) {
-     				print '<tr class="status6T">';
-				print '<td>';
-				$host ==  strstr($row[0],".",true) ;
-				if ($host != ""){
-					print $host;
-				}else{
-					print $row[0];
-				}
-				print '</td>';
-				print '<td>';
-				print $row[1];
-				print '</td>';
-				print '<td>';
-				print time_elapsed_string($row[2]) ;
-				print '</td>';
-				print '</tr>';
- 				}
-			?>
-</table>
-	</div>
+	for($i=0; $i<$cnt; $i++)
+	{
+    if (strpos($rss->channel->item[$i]->title,'(resolved)') == false) {
+		  $url = $rss->channel->item[$i]->link;
+		  $title = str_replace(".fcnt.franklincollege.edu", "", $rss->channel->item[$i]->title);
+		  $time = $rss->channel->item[$i]->pubDate;
+		  echo '<div class="line status6"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p></div>';
+    }
+	}
+  ?>
 </div>
-<div class="events hosts dash">
-	<h2>Event Log ( last 5 events )</h2>
-	<div class="dash_wrapper">
+  <h2>Resolved Outages (Last 4)</h2>
+  <div class="content">
+  <?
+  for($i=0; $i<4; $i++)
+	{
+    if (strpos($rss->channel->item[$i]->title,'(resolved)') !== false) {
+		  $url = $rss->channel->item[$i]->link;
+		  $title = str_replace(".fcnt.franklincollege.edu", "", $rss->channel->item[$i]->title);
+		  $time = $rss->channel->item[$i]->pubDate;
+		  echo '<div class="line status3"><b><a href="'.$url.'">'.$title.'</a></b><p>'.$time.'</p></div>';
+    }
+	}
+  ?>
+</div>
+  <?
+}
+
+feedMe("http://localhost:8980/opennms/rss.jsp?feed=outage");
+?>
+</div>
+<div class="right">
+	<h2>Event Log</h2>
+  <div class="content" id="events">
 			<?
  $sql = "SELECT 
 		events.eventdescr, 
@@ -101,13 +82,13 @@ WHERE
  }       
 
 		 		while ($row = pg_fetch_array($result)) {
-     				print '<div class="status'.$row[1].'">';
+     				print '<div class="line status'.$row[1].'">';
 				print '<h4>'.$row[3].'</h4>';
-				print strip_tags($row[0], '<a>') ;
-				print '</div>';
+				print $row[0];
+				print '<div class="clear"></div></div>';
  				}
 			?>
-	</div>
+</div>
 </div>
 
 </body>
