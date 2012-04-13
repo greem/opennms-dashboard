@@ -1,0 +1,30 @@
+ *{ margin:0;  padding:0}
+ 
+ body{ font-family:sans-serif;  line-height:1.4em;  overflow-x:hidden;  background:#404040;  padding:.5em 1em}
+ 
+ h1{ display:inline-block;  margin-left:10px}
+ a{color:black}
+ h2{ margin:0 0 .2em 0;  color:white;  text-shadow:1px 1px 0 #000;  font-size:1em}
+ .clear{ clear:both}
+ 
+ .date{ white-space:nowrap}
+ .left{ float:left;  width:49%}
+ .right{ float:right;  width:49%}
+ .content{ background-color:white;  -moz-border-radius:1em;  border-radius:1em;  margin-bottom:.5em;  padding:.5em;  overflow:auto;  white-space:nowrap;  font-size:1.3em;  font-weight:bold}
+ #alarms{ font-size:1em;  font-weight:normal;  white-space:normal}
+ #alarms p{float:none}
+ .content p{ float:right}
+ .content b{ float:left}
+ .line{ -moz-border-radius:1em;  border-radius:1em;  padding:.25em 1em .25em 1em;  margin-bottom:.25em}
+ .1{ background-color:#EBEBCD}
+ .CLEARED{ background-color:#EEE}
+ .NORMAL{ background-color:#D7E1CD}
+ .WARNING{ background-color:#FFF5CD}
+ .MINOR{ background-color:blanchedAlmond}
+ .MAJOR{ background-color:#FFD7CD}
+ .opennms_statusbar{ background:-moz-linear-gradient(top center,#6a6a6a,#464646);  position:fixed;  bottom:0;  width:100%;  margin:0 0 0 -1em;  height:40px;  text-align:right;  border-top:1px solid #818181;  opacity:.9}
+ .opennms_statusbar_item{ border-left:2px groove #000;  height:40px;  line-height:40px;  padding:0 1em;  color:white;  text-shadow:1px 1px 0 black;  position:relative;  float:right}
+ 
+ #loading{ background:transparent url(throbber.gif) no-repeat center center;  width:24px;  height:40px;  position:absolute}
+ #refreshing{ padding-left:35px}
+ #timestamp_wrap{ cursor:default;  font-size:2em}
