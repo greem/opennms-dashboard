@@ -42,7 +42,8 @@ Function getOutages($options){
     $outages["$id"]['ifLostService'] = $outageXML->outage[$i]->ifLostService;
     $outages["$id"]['ifRegainedService'] = $outageXML->outage[$i]->ifRegainedService;
     $outages["$id"]['ipAddress'] = $outageXML->outage[$i]->ipAddress;
-    $outages["$id"]['serviceName'] = $outageXML->outage[$i]->monitoredService->serviceType->name;
+    $sid = $outageXML->outage[$i]->monitoredService->serviceType['id'];
+    $outages["$id"]['services']['serviceType-'."$sid"]['serviceName'] = $outageXML->outage[$i]->monitoredService->serviceType->name;
   }
   return($outages);
 }

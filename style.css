@@ -10,11 +10,12 @@
  .date{ white-space:nowrap}
  .left{ float:left;  width:49%}
  .right{ float:right;  width:49%}
- .content{ background-color:white;  -moz-border-radius:1em;  border-radius:1em;  margin-bottom:.5em;  padding:.5em;  overflow:auto;  white-space:nowrap;  font-size:1.3em;  font-weight:bold}
+ .content{ background-color:white;  -moz-border-radius:1em;  border-radius:1em;  margin-bottom:.5em;  padding:.5em;  overflow:auto;  white-space:nowrap; font-size: 1.3em; font-weight:bold}
  #alarms{ font-size:1em;  font-weight:normal;  white-space:normal}
  #alarms p{float:none}
- .content p{ float:right}
+ .bubble{ background-color:white;  -moz-border-radius:1em;  border-radius:1em;  margin: 0 0 .25em .25em;  padding:.25em .5em .25em .5em;  white-space:nowrap; font-size: 1em; font-weight:bold; float: left}
  .content b{ float:left}
+ .content p{ float:right}
  .line{ -moz-border-radius:1em;  border-radius:1em;  padding:.25em 1em .25em 1em;  margin-bottom:.25em}
  .1{ background-color:#EBEBCD}
  .CLEARED{ background-color:#EEE}
@@ -22,6 +23,7 @@
  .WARNING{ background-color:#FFF5CD}
  .MINOR{ background-color:blanchedAlmond}
  .MAJOR{ background-color:#FFD7CD}
+ .CRITICAL{ background-color:#ff9a81}
  .opennms_statusbar{ background:-moz-linear-gradient(top center,#6a6a6a,#464646);  position:fixed;  bottom:0;  width:100%;  margin:0 0 0 -1em;  height:40px;  text-align:right;  border-top:1px solid #818181;  opacity:.9}
  .opennms_statusbar_item{ border-left:2px groove #000;  height:40px;  line-height:40px;  padding:0 1em;  color:white;  text-shadow:1px 1px 0 black;  position:relative;  float:right}
  
