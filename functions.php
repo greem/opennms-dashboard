@@ -1,37 +1,32 @@
 <?
+
 Function feedMe($feed) {
-	// Use cURL to fetch text
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, $feed);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
-	$data = curl_exec($ch);
-	curl_close($ch);
-  
+
+    $url = "http://localhost:8980/opennms";
+    $opennms_user = 'my_rest_user';
+    $opennms_pass = '.......';
+
+    // Use cURL to fetch text
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL, $url.$feed);
+    curl_setopt($ch, CURLOPT_HEADER, 0);
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
+    curl_setopt($ch, CURLOPT_USERPWD, $opennms_user.':'.$opennms_pass);
+    $data = curl_exec($ch);
+    curl_close($ch);
+
 	$data = simplexml_load_string($data);
-  return($data);
+    return($data);
 }
 
 Function nodeInfo($id) {
-  // Use cURL to fetch text
-	$ch = curl_init();
-	curl_setopt($ch, CURLOPT_URL, "http://localhost:8980/opennms/rest/nodes/".$id);
-	curl_setopt($ch, CURLOPT_HEADER, 0);
-	curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
-	$data = curl_exec($ch);
-	curl_close($ch);
-  
-	$data = simplexml_load_string($data);
-  
-  $node = array();
-
-  return($data->attributes()->label);
+    $data = feedMe("/rest/nodes/".$id);
+    return ($data->attributes()->label);
 }
 
 Function getOutages($options){
-  $outageXML = feedMe("http://localhost:8980/opennms/rest/outages".$options);
+  $outageXML = feedMe("/rest/outages".$options);
   
 	$cnt = count($outageXML->outage);
   $outages = array();
@@ -49,7 +44,7 @@ Function getOutages($options){
 }
 
 Function getAlarms($options){
-  $alarmXML = feedMe("http://localhost:8980/opennms/rest/alarms".$options);
+  $alarmXML = feedMe("/rest/alarms".$options);
 
 	$cnt = count($alarmXML->alarm);
   $alarms = array();

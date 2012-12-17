@@ -32,7 +32,7 @@
       
       function updateopennmsData(block){
         $("#loading").fadeIn(200);
-    		block.load("./content.php", function(response){
+    		block.load("content.php", function(response){
           $(this).html(response);
           $("#loading").fadeOut(200);
           createTimeStamp();
