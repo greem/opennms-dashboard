@@ -2,16 +2,14 @@
 
 Function feedMe($feed) {
 
-    $url = "http://localhost:8980/opennms";
-    $opennms_user = 'my_rest_user';
-    $opennms_pass = '.......';
+    include('auth.php'); // $opennms_url, $opennms_pass, $opennms_user
 
     // Use cURL to fetch text
     $ch = curl_init();
-    curl_setopt($ch, CURLOPT_URL, $url.$feed);
+    curl_setopt($ch, CURLOPT_URL, $opennms_url.$feed);
     curl_setopt($ch, CURLOPT_HEADER, 0);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
+    #curl_setopt ($ch, CURLOPT_USERAGENT, $useragent);
     curl_setopt($ch, CURLOPT_USERPWD, $opennms_user.':'.$opennms_pass);
     $data = curl_exec($ch);
     curl_close($ch);
