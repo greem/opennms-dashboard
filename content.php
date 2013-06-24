@@ -5,7 +5,7 @@ include "functions.php";
   <h2>Current Outages</h2>
   <div class="content">
   <?		  
-  $outages = getOutages("?ifRegainedService=null&orderBy=ifRegainedService&order=desc&limit=100");
+  $outages = getOutages("?ifRegainedService=null&orderBy=ifLostService&order=desc&limit=100");
   foreach ($outages as $outage) {
     $services = "";
     foreach($outage['services'] as $service){
@@ -16,7 +16,7 @@ include "functions.php";
     }else{
     	$severity = "MAJOR";
     }
-    echo '<div class="line '.$severity.'"><b>'.$outage["label"].'('.$outage["ipAddress"].')</b><p>'.$outage["ifLostService"].'</p><b>';
+    echo '<div class="line '.$severity.'"><b>'.$outage["label"].'('.$outage["ipAddress"].')</b><p>'.$outage["ifLostService"].' ago</p><b>';
     echo $services;
     echo '</b></br>';
     echo '</p><div class="clear"></div></div>';
@@ -32,7 +32,7 @@ include "functions.php";
     foreach($outage['services'] as $service){
 	$services .= '<span class="bubble">'.$service['serviceName'].'</span>';
     }
-    echo '<div class="line NORMAL"><b>'.$outage["label"].'('.$outage["ipAddress"].')</b><p>'.$outage["ifLostService"].'</p><b>';
+    echo '<div class="line NORMAL"><b>'.$outage["label"].'('.$outage["ipAddress"].')</b><p>'.$outage["ifLostService"].' ago</p><b>';
     echo $services;
     echo '</b></br>';
     echo '</p><div class="clear"></div></div>';
