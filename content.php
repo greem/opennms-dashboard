@@ -5,7 +5,8 @@ include "functions.php";
   <h2>Current Outages</h2>
   <div class="content">
   <?		  
-  $outages = getOutages("?ifRegainedService=null&orderBy=ifLostService&order=desc&limit=100");
+  #$outages = getOutages("?ifRegainedService=null&orderBy=ifLostService&order=desc&limit=100");
+  $outages = getOutages("?ifRegainedService=null&orderBy=id&order=desc&limit=100");
   foreach ($outages as $outage) {
     $services = "";
     foreach($outage['services'] as $service){
