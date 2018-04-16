@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+    <title>OpenNMS Dashboard</title>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <script type="text/javascript">
+      var placeHolder,
+      refreshValue = 60;
+      var remaining = refreshValue;
+
+      $().ready(function(){
+        placeHolder = $("#opennms_placeholder");
+        updateopennmsData(placeHolder);
+        window.setInterval(updateCountDown, 1000);
+      });
+
+      // timestamp stuff
+      function createTimeStamp() {
+        // create timestamp
+        var ts = new Date();
+        ts = ts.toTimeString();
+        ts = ts.replace(/\s+GMT.+/ig, "");
+        ts = ts.replace(/\:\d+(?=$)/ig, "");
+        return "<div class=\"timestamp_stamp\">" + ts +"</div>";
+      }
+
+      function updateopennmsData(block){
+        $("#loading").fadeIn(200);
+    		block.load("content.php", function(response){
+          $(this).html(response);
+          $("#loading").fadeOut(200);
+          $("#timestamp_wrap").empty().append(createTimeStamp());
+        });
+      }
+
+      function updateCountDown(){
+        var countdown = $("#refreshing_countdown");
+        remaining = remaining - 1
+
+        if(remaining == 1) {
+            updateopennmsData(placeHolder);
+        }
+        else if(remaining == 0) {
+            remaining = refreshValue;
+        }
+        countdown.text(remaining);
+      }
+    </script>
+
+    <div id="opennms_placeholder"></div>
+    <div class="opennms_statusbar">
+      <div class="opennms_statusbar_item">
+        <div id="timestamp_wrap"></div>
+      </div>
+      <div class="opennms_statusbar_item">
+        <div id="loading"></div>
+        <p id="refreshing">Refresh in <span id="refreshing_countdown">0</span> seconds</p>
+        </div>
+    </div>
+
+  </body>
+</html>

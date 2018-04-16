@@ -1,0 +1,6 @@
+<?php
+
+$opennms_url = 'http://localhost:8980/opennms';
+$opennms_user = 'opennms';
+$opennms_pass = 'opennms';
+
