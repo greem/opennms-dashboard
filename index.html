@@ -1,9 +1,10 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
 <html>
   <head>
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"> 
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title>OpenNMS Dashboard</title>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
   </head>
   <body>
@@ -11,13 +12,13 @@
       var placeHolder,
       refreshValue = 60;
       var remaining = refreshValue;
-      
+
       $().ready(function(){
         placeHolder = $("#opennms_placeholder");
         updateopennmsData(placeHolder);
         window.setInterval(updateCountDown, 1000);
       });
-      
+
       // timestamp stuff
       function createTimeStamp() {
         // create timestamp
@@ -36,9 +37,9 @@
           $("#timestamp_wrap").empty().append(createTimeStamp());
         });
       }
-      
+
       function updateCountDown(){
-        var countdown = $("#refreshing_countdown"); 
+        var countdown = $("#refreshing_countdown");
         remaining = remaining - 1
 
         if(remaining == 1) {
